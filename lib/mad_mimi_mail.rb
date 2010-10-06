@@ -12,10 +12,18 @@ class MadMimiMail
   end
 
   def deliver!(mail)
-    mail_settings                  = { :recipients     => extract_header(mail, :to) }
-    mail_settings[:raw_html]       = mail.html_part.body if mail.html_part
-    mail_settings[:raw_plain_text] = mail.text_part.body if mail.text_part
+    mail_settings = { :recipients => extract_header(mail, :to) }
 
+    case mail.content_type
+    when /^multipart/
+      mail_settings[:raw_html]       = mail.html_part.body if mail.html_part
+      mail_settings[:raw_plain_text] = mail.text_part.body if mail.text_part
+    when /^text\/html/
+      mail_settings[:raw_html] = mail.body
+    else
+      mail_settings[:raw_plain_text] = mail.body
+    end
+      
     [:name, :from, :subject, :promotion_name, :list_name, :raw_yaml].inject(mail_settings) do |hash, header_name|
       hash.merge!(header_name => extract_header(mail, header_name))
     end
