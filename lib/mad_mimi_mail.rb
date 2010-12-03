@@ -13,7 +13,9 @@ class MadMimiMail
 
   def deliver!(mail)
     mail_settings = { :recipients => extract_header(mail, :to) }
-
+    
+    puts mail_settings
+    
     case mail.content_type
     when /^multipart/
       mail_settings[:raw_html]       = mail.html_part.body if mail.html_part
@@ -28,6 +30,8 @@ class MadMimiMail
       hash.merge!(header_name => extract_header(mail, header_name))
     end
     
+    puts mail_settings
+
     mimi_response = @_mimi.send_mail(mail_settings.merge(self.settings), mail_settings[:body_hash].to_yaml)
 
     #FIXME: (Dirty Hack) Need access to the transaction id from the api call, so
