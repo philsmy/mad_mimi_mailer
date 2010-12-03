@@ -28,9 +28,9 @@ class MadMimiMail
       hash.merge!(header_name => extract_header(mail, header_name))
     end
     
-    yaml_body = mail_settings[:yaml_body] || {}
+    body_hash = mail[:body_hash] || {}
   
-    mimi_response = @_mimi.send_mail(mail_settings.merge(self.settings), {:test => "this is a test"}.to_yaml)
+    mimi_response = @_mimi.send_mail(mail_settings.merge(self.settings), body_hash.to_yaml)
 
     #FIXME: (Dirty Hack) Need access to the transaction id from the api call, so
     # we're defining a new method #transaction_id onto the mail object containing the integer value
