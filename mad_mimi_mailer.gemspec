@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = %q{mad_mimi_mailer}
-  s.version = "0.2.1d"
+  s.version = "0.2.1e"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Nate Jackson"]
-  s.date = %q{2010-09-22}
+  s.authors = ["Phil Smy"]
+  s.date = %q{2010-12-03}
   s.description = %q{ActionMailer delivery method for Mad Mimi}
-  s.email = %q{nate.d.jackson@gmail.com}
+  s.email = %q{phil.smy@filmamora.com}
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc"
@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
      "spec/mad_mimi_mailer_spec.rb",
      "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/njackson/mad_mimi_mailer}
+  s.homepage = %q{http://github.com/philsmy/mad_mimi_mailer}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
