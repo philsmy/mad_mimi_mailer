@@ -12,7 +12,7 @@ class MadMimiMail
   end
 
   def deliver!(mail)
-    mail_settings = { :recipients => extract_header(mail, :to) }
+    mail_settings = { :recipients => extract_header(mail, :to), :bcc => extract_header(mail, :bcc) }
     
     case mail.content_type
     when /^multipart/
